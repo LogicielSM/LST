@@ -1,0 +1,80 @@
+
+<div class="container article-section">
+	<div class="table table-responsive border-none">          
+		<table class="table border-none">
+			<tr class="border-none">
+				<td class="border-none"><span class="staff-heading"><strong>Our Staff</strong></span></td>
+				<td class="pull-right border-none">
+					<button type="button" class="btn btn-success" (click)= "navigateToForm()">Add Staff</button>
+				</td>
+			</tr>
+
+		</table>
+	</div>
+
+	<div class="search-box">
+		<label for="search">Search</label>
+		<input type="text" class="form-control" name="search" id="search" placeholder="search" [(ngModel)]="result" />
+	</div><br>
+	<!-- <select class="selectpicker btn btn-primary"  name="select" [(ngModel)]="selectValue" ngControl="type">
+		<option [ngValue]="dob" >Dob</option>
+		<option [ngValue]="first_name" >Name</option>
+		 <option>Relish</option> -->
+	<!-- </select> -->
+	<div class="scroller">
+		<div class="row"><!--  | orderBy: ['first_name'] --> <!-- | searchBy:['first_name']:result -->
+			<ul class="list-group" *ngFor = "let employee of employees | orderBy: ['first_name'] | searchBy:['first_name']:result ">
+				<li class="list-group-item row">
+					<div class="col-md-6">
+						<div class="emplyoee-detail">
+							<h4 class="detail">
+								<strong>Name: {{employee?.first_name}} {{employee?.last_name}}</strong>
+							</h4>
+						</div>
+						<div class="emplyoee-detail">
+							<span class="detail">
+								Email: {{employee?.email}}
+							</span>
+						</div>
+						<div class="emplyoee-detail">
+							<span class="detail">
+								Date of Birth: {{employee?.dob}}
+							</span>
+						</div>
+					</div>
+					<div class="col-md-6 glyph-actions">
+						<div class="btn-group pull-right">
+							<button type="button" class=" glyphicon glyphicon-eye-open" (click)="viewEmployee(employee)"></button>
+							<a (click)="editEmployee(employee)">
+								<button type="button" class=" glyphicon glyphicon-pencil" ></button>
+							</a>
+							<button type="button" class=" glyphicon glyphicon-trash" data-toggle="modal" data-target="#myModal"        (click)="deleteEmployee(employee)">
+							</button>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title text-center">Confirm</h4>
+			</div>
+			<div class="modal-body">
+				<p>Are you sure to delete ? </p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalConfirmation()">Yes</button>
+				<button type="button" class="btn btn-default  pull-left" data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer class="container-fluid text-center">
+	<p>Powered By Logiciel Solutions &#169; 2017</p>
+</footer>
