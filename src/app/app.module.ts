@@ -13,7 +13,8 @@ import { AppRoutingModule, AppRoutingComponents } from './routes/app.routing';
 
 import { HttpService } from './services/http.service';
 import { OrderByPipe } from './pipes/order-by.pipe';
-import { SearchByPipe } from './pipes/search-by.pipe'
+import { SearchByPipe } from './pipes/search-by.pipe';
+import { LoginComponent } from './modules/login/login.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SearchByPipe } from './pipes/search-by.pipe'
     EmployeeDetailComponent,
     AppRoutingComponents,
     OrderByPipe,
-    SearchByPipe
+    SearchByPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

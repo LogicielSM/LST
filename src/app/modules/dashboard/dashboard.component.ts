@@ -13,11 +13,15 @@ import { OrderByPipe } from '../../pipes/order-by.pipe';
 export class DashboardComponent implements OnInit {
 	employees: any[] = [];
 	public employeeObj;
-		
+	public sorts = ['first_name','dob'];
+	public emp;
 	constructor(private httpService: HttpService,private route: ActivatedRoute, private _router:Router ) { }
 
 	data :any[];
 	ngOnInit() {
+		this.emp={
+			sort: this.sorts[0],
+		}
 		this.getEmployees();
 
 	}

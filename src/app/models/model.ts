@@ -9,6 +9,7 @@ export class DataModel {
 		public address:string,
 		public gender:string,
 		public dob:string,
+		public designation:string,
 		public is_active:boolean
 		){}
 }

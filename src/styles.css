@@ -1,15 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-a{
+a:hover{
   text-decoration: none;
 }
-
-a,button,input{
-  outline: none;
-}
-
 .article-section{
-    margin-top: 50px;
+    margin-top: 20px !important;
 }	
 button{
 	border:none;
@@ -18,65 +13,30 @@ button{
 textarea {
    resize: none;
 }
-
-/*Slider Toggle Button */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 15px;
+/* label color */
+.input-field label {
+ color: #000;
 }
-
-
-.switch input {display:none;}
-
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 8px;
-  left: 12px;
-  right: -12px;
-  bottom: -8px;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+/* label focus color */
+.input-field input[type=text]:focus + label {
+ color: #000;
 }
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 15px;
-  width: 15px;
-  left: 0;
-  bottom: 0;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+/* label underline focus color */
+.input-field input[type=text]:focus {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
 }
-
-input:checked + .slider {
-  background-color: #2196F3;
+/* valid color */
+.input-field input[type=text].valid {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
 }
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+/* invalid color */
+.input-field input[type=text].invalid {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
 }
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-.border-none{
-  border: none !important;
+/* icon prefix focus color */
+.input-field .prefix.active {
+ color: #000;
 }

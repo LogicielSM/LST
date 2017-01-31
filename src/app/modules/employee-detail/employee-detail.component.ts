@@ -11,7 +11,7 @@ import { DataModel } from '../.././models/model';
 	styleUrls: ['./employee-detail.component.css']
 })
 export class EmployeeDetailComponent implements OnInit {
-	private employeeData = new DataModel (1,'420','','','',9,'','Male','',false);
+	private employeeData = new DataModel (1,'420','','','',8,'','male','','',false);
 	public editing = false;
 	public sub;
 	public id;
@@ -32,7 +32,9 @@ export class EmployeeDetailComponent implements OnInit {
 			.switchMap((params: Params) => this.httpService.getEmp(params['id']))
 			.subscribe(emp => {
 				objectData= emp;
-				this.employeeData = objectData.data;
+				console.log(objectData);
+				this.employeeData = objectData;
+			
 				console.log(this.employeeData);
 			})
 		}

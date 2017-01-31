@@ -1,185 +1,196 @@
 <div class="container article-section">
-	<h1 class="well">Registration Form</h1>
+	<h4 class="well text-center	">Add employee</h4>
 	<div class="col-lg-12 well">
 		<div class="row">
 			<form (submit)="addEmployee()" #bookForm= "ngForm">
-				<div class="col-sm-12">
+				<div class="col s12">
 					<div class="row">
-						<div class="col-sm-6 form-group">
-							<label>First Name</label>
+						<div class="input-field col s6">
 							<input type="text"
 								   id="firstName"
 								   name="firstName"
 								   [(ngModel)]= "employeeData.first_name"
-								   placeholder="Enter First Name Here.."
-								   class="form-control"
+								   class="validate"
 								   required
 								   #firstName= "ngModel"
 								   pattern="[a-zA-Z ]*">
-							<div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
-								<div [hidden]="!firstName.errors.required">
-									FirstName is required
-								</div>
-								<div [hidden]="!firstName.errors.pattern">
-									Firstname should be in alphabets 
-								</div>
-							</div>
+							<label for="firstName"
+								   data-error="Enter a valid name"
+								   [ngClass]="{active:isactive}" 
+								   >
+								First Name
+							</label>
 						</div>
-						<div class="col-sm-6 form-group">
-							<label>Last Name</label>
+						<div class="input-field col s6">
 							<input type="text"
 								   id="lastName"
 								   name="lastName"
 								   [(ngModel)]= "employeeData.last_name	"
-								   placeholder="Enter Last Name Here.."
-								   class="form-control"
+								   class="validate"
 								   required
 								   #lastName= "ngModel"
 								   pattern="[a-zA-Z ]*">
-							<div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" class="alert alert-danger">
-								<div [hidden]="!lastName.errors.required">
-									LastName is required
-								</div>
-								<div [hidden]="!lastName.errors.pattern">
-									LastName should be in alphabets 
-								</div>
+							<label for="lastName"
+								   data-error="Enter a valid name" 
+								   [ngClass]="{active:isactive}" 
+								   >
+								Last Name
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input type="text"
+								   id="emp_code"
+								   name="emp_code"
+								   [(ngModel)]= "employeeData.emp_code"
+								   class="validate"
+								   required
+								   #emp_code= "ngModel"
+							>
+							<label for="emp_code"
+								   data-error="Employee code not valid"
+								   [ngClass]="{active:isactive}" 
+								   >Employee Code
+							</label>
+						</div>
+						<div class="input-field col s6">
+							<input type="text"
+								   id="designation"
+								   name="designation"
+								   [(ngModel)]= "employeeData.designation"
+								   class="validate"
+								   required
+								   pattern="[a-zA-Z ]*">
+							<label for="designation"
+								   data-error="Only characters"
+								   [ngClass]="{active:isactive}" 
+								   >Designation
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="email"
+								   name="email"
+								   id="email"
+								   [(ngModel)]= "employeeData.email"
+								   class="validate"
+								   required
+								   #email= "ngModel"
+								   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+							<label for="email"
+								   data-error="Enter a Valid Email"
+								   [ngClass]="{active:isactive}" 
+								   >
+								Email Address
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<div class="chips chips-autocomplete " (keyup.enter)= "showTagValues()"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text"
+								   id= "mobile"
+								   maxlength="10"
+								   name="mobile" 
+								   [(ngModel)]= "employeeData.mobile" 
+								   class="validate" 
+								   required 
+								   #mobile="ngModel"
+								   pattern="^[2-9]{2}[0-9]{8}$">
+							<label for="mobile"
+								   data-error="mobile number not valid"
+								   [ngClass]="{active:isactive}" 
+								   >
+								Phone Number
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<label for="Gender">Gender</label>
+							<p>
+								<input type="radio" 
+									   class="with-gap" 
+									   [(ngModel)]= "employeeData.gender"
+									   name="gender"
+									   value="male"
+									   id="male"
+									   checked>
+								<label for="male">Male</label>
+								<input type="radio" 
+									   class="with-gap" 
+								       [(ngModel)]= "employeeData.gender"
+								       name="gender" 
+								       value="female"
+								       id="female" >
+								<label for="female">Female</label>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<label>Date Of Birth</label>
+							<input type="date" 
+								   id="dob" 
+								   name="dob" 
+								   [(ngModel)]= "employeeData.dob" 
+								   class=" validate"
+								   required 
+								   #dob="ngModel">
+						</div>	
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<textarea id="address" 
+									  name="address" 
+									  [(ngModel)]= "employeeData.address" 
+									  rows="3" 
+									  resize= "none" 
+									  class="materialize-textarea"
+									  required 
+									  #address="ngModel">
+							</textarea>
+							<label for="address"
+								   data-error="wrong"
+								   [ngClass]="{active:isactive}" 
+								   >
+								Address
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class=" col s12">
+							<label>Active ?</label>
+							<div class="switch">
+							    <label>
+							        <input type="checkbox" 
+							      		   name="is_active"
+									       [(ngModel)]= "employeeData.is_active">
+							        <span class="lever"></span>
+							    </label>
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<label>Employee Code</label>
-						<input type="text"
-						id="emp_code"
-						name="emp_code"
-						[(ngModel)]= "employeeData.emp_code"
-						placeholder="Enter First Name Here.."
-						class="form-control"
-						required
-						#emp_code= "ngModel"
-						>
-						<div *ngIf="emp_code.errors && (emp_code.dirty || emp_code.touched)" class="alert alert-danger">
-							<div [hidden]="!emp_code.errors.required">
-								Employee Code is required
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="email">Email Address</label>
-						<input type="email"
-							   name="email"
-							   id="email"
-							   [(ngModel)]= "employeeData.email"
-							   placeholder="Enter Email Address Here.."
-							   class="form-control"
-							   required
-							   #email= "ngModel"
-							   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
-						<div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
-							<div [hidden]="!email.errors.required">
-								Email is required
-							</div>
-							<div [hidden]="!email.errors.pattern">
-								Email is not valid
-							</div>
-						</div>
-
-					</div>
-					<div class="form-group">
-						<label>Phone Number</label>
-						<input type="text"
-							   id= "mobile"
-							   maxlength="10"
-							   name="mobile" 
-							   [(ngModel)]= "employeeData.mobile" 
-							   placeholder="Enter Phone Number Here.." 
-							   class="form-control" 
-							   required 
-							   #mobile="ngModel"
-							   pattern="^[2-9]{2}[0-9]{8}$">
-						<div *ngIf="mobile.errors && (mobile.dirty || mobile.touched)" class="alert alert-danger">
-							<div [hidden]="!mobile.errors.required">
-								Mobile is required
-							</div>
-							<div [hidden]="!mobile.errors.pattern">
-								Mobile number not valid
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label>Gender</label>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="col-sm-3">
-									<label>
-										<input type="radio" 
-											   name="gender" 
-											   id="optionsRadios1" 
-											   [(ngModel)]= "employeeData.gender" 
-											   value="male"
-											   checked="true">
-										Male
-									</label>
-								</div>
-								<div class="col-sm-3">
-									<label>
-										<input type="radio" 
-											   name="gender"
-											   id="optionsRadios2" 
-											   [(ngModel)]= "employeeData.gender" 
-											   value="female">
-										Female
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label>Date Of Birth</label>
-						<input type="date" 
-							   id="dob" 
-							   name="dob" 
-							   [(ngModel)]= "employeeData.dob" 
-							   class="form-control" 
-							   required 
-							   #dob="ngModel">
-						<div *ngIf="dob.errors && (dob.dirty || dob.touched)" class="alert alert-danger">
-							<div [hidden]="!dob.errors.required">
-								dob is required
-							</div>
-						</div>
-					</div>	
-					<div class="form-group">
-						<label>Address</label>
-						<textarea id="address" 
-								  name="address" 
-								  [(ngModel)]= "employeeData.address" 
-								  placeholder="Enter Address Here.." 
-								  rows="3" 
-								  resize= "none" 
-								  class="form-control" 
-								  required #address="ngModel">	
-						</textarea>
-						<div *ngIf="address.errors && (address.dirty || address.touched)" class="alert alert-danger">
-							<div [hidden]="!address.errors.required">
-								address is required
-							</div>
-						</div> 
-					</div>
-					<div class="form-group">
-						<label>Active ?</label>
-						<label class="switch">
-							<input type="checkbox" 
-								   name="isActive"
-								   [(ngModel)]= "employeeData.isActive">
-							<div class="slider round"></div>
-						</label>
-					</div>
-					<div class="action-buttons">
-						<button type="button" class="btn btn-md btn-info pull-right cancel-btn" (click)= "navigateToDasbord()"> Cancel </button>
-						<button type="submit" class="btn btn-md btn-info pull-right">{{buttonText}}</button>
-					</div>					
 				</div>
+				<div class="action-buttons">
+					<button type="button" 
+							class="btn btn-md btn-info pull-right cancel-btn" (click)= "navigateToDasbord()">
+						Cancel
+					</button>
+					<button type="submit" 
+							class="btn btn-md btn-info pull-right">
+						{{buttonText}}
+					</button>
+				</div>					
 			</form> 
 		</div>
 	</div>
 </div>
+{{employeeData.dob}}
+{{employeeData.email}}
