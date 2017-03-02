@@ -1,0 +1,118 @@
+<!--     One Day Leave Template     -->
+<lst-loader [isRunning]="isRequesting"></lst-loader>
+
+
+<div class="container apply-leave-wrap">
+	<div class="row">
+	    <div class="col-lg-12">
+	        <h2 class="page-header">Apply One Day Leave</h2>
+	    </div>
+	</div>
+	<div class="row">
+	 	<form [formGroup]="leaveForm" class="col-md-12" (submit)="applyLeave()">
+	 		<div class="row">
+	 			<div class="form-group col-md-12">
+	 				<!-- Date -->
+	 				<div>
+	 					<label for="date">Date</label>
+	 				</div>
+					<input id="date"
+						type="text"
+						class="form-control"
+						formControlName="date"
+						[(ngModel)]= "leaveData.date"
+						placeholder="YYYY-MM-DD"
+					    ngbDatepicker
+					    [dayTemplate]="customDay"
+					    #d="ngbDatepicker"
+					    (click)="d.toggle()">
+                    <template #customDay
+                            let-date="date"
+                            let-currentMonth="currentMonth"
+                            let-selected="selected"
+                            let-disabled="disabled">
+                        <span class="custom-day"
+                                [class.weekend]="isWeekend(date)"
+                                [class.bg-primary]="selected"
+                                [class.text-muted]="disabled">
+                                {{ date.day }}
+                        </span>
+                    </template>
+					<div class="error" *ngIf="leaveForm.controls.date.errors && leaveForm.controls.date.touched">
+		                <span *ngIf="leaveForm.controls.date.errors.required">
+		                    {{ msg?.REQUIRED }}
+		                </span>
+	                </div>
+	 			</div>
+	 		</div>
+			<div class="row">
+	 			<div class="form-group col-md-12">
+					<!-- Subject -->
+					<div>
+	 					<label for="subject">Subject</label>
+					</div>
+	 				<input id="subject" 
+						type="text"
+						class="form-control"
+						formControlName="subject"
+						[(ngModel)]= "leaveData.subject">
+	 				<div class="error" *ngIf="leaveForm.controls.subject.errors && leaveForm.controls.subject.touched">
+	                    <span *ngIf="leaveForm.controls.subject.errors.required">
+	                        {{ msg?.REQUIRED }}
+	                    </span>
+	                </div>
+	 			</div>
+	 		</div>
+	 		<div class="row">
+	 			<div class="form-group col-md-12">
+	 				<!-- Reason -->
+	 				<div>
+		 				<label for="note">Reason</label>
+	 				</div>
+	 				<textarea id="note" 
+		 				rows="3"
+		 				resize="none"
+		 				class="form-control"
+						formControlName="reason"
+		 				[(ngModel)]= "leaveData.reason">
+	 				</textarea>
+		 			<div class="error" *ngIf="leaveForm.controls.reason.errors && leaveForm.controls.reason.touched">
+	                    <span *ngIf="leaveForm.controls.reason.errors.required">
+	                        {{ msg?.REQUIRED }}
+	                    </span>
+	                </div>
+	 			</div>
+	 		</div>
+			<div class="row">
+			 	 <div class="form-group col-md-12">
+			 	 	<!-- Priority -->
+			 	 	<div>
+	    				<label>Priority</label>
+			 	 	</div>
+				    <select id='priority'
+				    	class="form-control"
+				    	[(ngModel)]="leaveData.priority"
+				    	formControlName="priority">
+					    <option value="" disabled selected>Please select priority</option>
+					    <option value="Low">Low</option>
+					    <option value="Medium">Medium</option>
+					    <option value="High">High</option>
+				    </select>
+	  			</div>
+			</div>
+			<div class="action-buttons">
+				<button type="submit" 
+						[disabled]="!leaveForm.valid"
+						class="btn btn-md btn-success pull-right">
+						Apply
+				</button>
+				<button type="button"
+						class="btn btn-md btn-primary pull-left red darken-4"
+						(click)="goToDashboard()">
+						Cancel
+				</button>
+				
+			</div>
+		</form>	
+	</div>
+</div>

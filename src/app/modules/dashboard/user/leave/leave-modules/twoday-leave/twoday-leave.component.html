@@ -1,0 +1,142 @@
+
+<!-- Run loader before get data -->
+<lst-loader [isRunning]="isRequesting"></lst-loader>
+
+<!--     Multi-Days Leave Template     -->
+<div class="container apply-leave-wrap">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Apply Multi Days Leave</h2>
+        </div>
+    </div>
+    <div class="row">
+        <form [formGroup]="leaveForm" class="col-md-12" (submit)="applyLeave()">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <!-- Date From -->
+                    <div>
+                        <label for="dateFrom">From</label>
+                    </div>
+                    <input  id="date_from"
+                            class="form-control"
+                            type="text"
+                            formControlName="dateFrom"
+                            [(ngModel)]= "leaveData.dateFrom"
+                            placeholder="YYYY-MM-DD"
+                            ngbDatepicker
+                            [dayTemplate]="customDay"
+                            #dateFrom="ngbDatepicker"
+                            (click)="dateTo.close();dateFrom.open();">
+                        <template #customDay
+                                let-date="date"
+                                let-currentMonth="currentMonth"
+                                let-selected="selected"
+                                let-disabled="disabled">
+                            <span class="custom-day"
+                                    [class.weekend]="isWeekend(date)"
+                                    [class.bg-primary]="selected"
+                                    [class.text-muted]="disabled">
+                                    {{ date.day }}
+                            </span>
+                        </template>
+                    
+                     <div class="error" *ngIf="leaveForm.controls.dateFrom.errors && (leaveForm.controls.dateFrom.touched || leaveForm.controls.dateFrom.dirty)">
+                        <span *ngIf="leaveForm.controls.dateFrom.errors.required">
+                            {{ msg?.REQUIRED }}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <!-- Date To -->
+                    <div>
+                        <label for="dateTo">To</label>
+                    </div>
+                    <input  id="dateTo"
+                            class="form-control"
+                            type="text" 
+                            formControlName="dateTo"
+                            [(ngModel)]= "leaveData.dateTo"
+                             placeholder="YYYY-MM-DD"
+                            ngbDatepicker
+                            [dayTemplate]="customDay"
+                            #dateTo="ngbDatepicker"
+                            (click)="dateFrom.close();dateTo.open()">
+                    
+                    <div class="error" *ngIf="leaveForm.controls.dateTo.errors && leaveForm.controls.dateTo.touched">
+                        <span *ngIf="leaveForm.controls.dateTo.errors.required">
+                            {{ msg?.REQUIRED }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <!-- Subject -->
+                    <div>
+                         <label for="subject">Subject</label>
+                    </div>
+                    <input  id="subject"
+                            class="form-control"
+                            type="text"
+                            formControlName="subject"
+                            [(ngModel)]= "leaveData.subject" >
+                   
+                    <div class="error" *ngIf="leaveForm.controls.subject.errors && leaveForm.controls.subject.touched">
+                        <span *ngIf="leaveForm.controls.subject.errors.required">
+                            {{ msg?.REQUIRED }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <!-- Reason -->
+                    <div>
+                        <label for="reason"> Reason </label>
+                    </div>
+                   <textarea id="note" 
+                        rows="3"
+                        resize="none"
+                        class="form-control"
+                        formControlName="reason"
+                        [(ngModel)]= "leaveData.reason">
+                    </textarea>
+                    
+                    <div class="error" *ngIf="leaveForm.controls.reason.errors && leaveForm.controls.reason.touched">
+                        <span *ngIf="leaveForm.controls.reason.errors.required">  
+                            {{ msg?.REQUIRED }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+           <div class="row">
+                <div class="form-group col-md-12">
+                    <!-- Priority -->
+                    <!-- <div>
+                        <label>Priority</label>
+                    </div> -->
+                    <select id='priority'
+                        class="form-control"
+                        [(ngModel)]="leaveData.priority"
+                        formControlName="priority">
+                        <option value="" disabled selected>Please select priority</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button type="submit"
+                        [disabled]="!leaveForm.valid"
+                        class="btn btn-md btn-success pull-right">
+                        Apply
+                </button>
+                <button type="button" 
+                        class="btn btn-md btn-primary pull-left" (click)= "goToDashboard()">
+                        Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

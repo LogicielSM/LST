@@ -1,0 +1,68 @@
+.container{
+    width: 100%;
+    margin: auto;
+}
+.selection-style
+{
+    height: 30px;
+    min-width: 150px;
+    max-width: 250px;
+    width: 100%;
+    margin-top: -7px;
+    padding: 0 0 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}   
+.search-box{
+    min-width: 150px;
+    max-width: 450px;
+}
+.employee-list-heading{
+    font-size: 35px;
+    font-weight: bold;
+    color: #35393b;
+}
+.employee-details{
+    color: #9b9b9b;
+}
+.scroller{
+    height: 620px;
+    overflow: scroll;
+    margin: 0;
+    overflow-x: hidden;
+}
+.scroller .row{
+    margin-bottom: 0;
+}
+.emp-action{
+    margin-top: 25px;
+    padding-right: 20px;
+}
+.emp-action a{
+    color: #000;
+}
+.detail{
+    margin: 0 0 3px 0;
+    font-weight: 400;       
+}
+.glyph-actions{
+    margin-top: 41px;
+}
+footer{
+	margin-top: 15px;
+}
+.clear-both{
+    clear: both;
+}
+.modal{
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #fafafa;
+    padding: 0;
+    max-height: 270px ;
+    max-width:365px;
+    margin:0 auto;
+    overflow-y: auto;
+    border-radius: 2px;
+}

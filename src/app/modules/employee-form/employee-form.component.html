@@ -1,196 +1,298 @@
-<div class="container article-section">
-	<h4 class="well text-center	">Add employee</h4>
+<!-- Run loader before get data -->
+<lst-loader [isRunning]="isRequesting"></lst-loader>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">{{formLabel}}</h1>
+    </div>
+</div>
+<!-- start main container -->
+<div class="container apply-leave-wrap">
 	<div class="col-lg-12 well">
 		<div class="row">
-			<form (submit)="addEmployee()" #bookForm= "ngForm">
-				<div class="col s12">
+			<form [formGroup]="form" (submit)="addUpdateEmployee()">
+				<div class="col-md-12 form-group">
+					<!-- <div class="row">
+						<div class=" col s12">
+							<div class=" col s12">
+								<input type="file"
+									   id= "image"
+									   name="image" 
+									   (change)="onChange($event) "
+									   required >
+								<label for="image"
+									   data-error="image filed is required"
+									   [ngClass]="{active:isActive}" 
+									   >
+									Image
+								</label>
+							</div>
+						</div>
+					</div> -->
 					<div class="row">
-						<div class="input-field col s6">
+						<div class="col-md-6 form-group">
+							<!-- First Name -->
+							<label for="firstName" class="label-control" >First Name</label>
 							<input type="text"
 								   id="firstName"
-								   name="firstName"
-								   [(ngModel)]= "employeeData.first_name"
-								   class="validate"
-								   required
-								   #firstName= "ngModel"
-								   pattern="[a-zA-Z ]*">
-							<label for="firstName"
-								   data-error="Enter a valid name"
-								   [ngClass]="{active:isactive}" 
-								   >
-								First Name
-							</label>
+								   class="form-control" 
+								   formControlName="firstName"
+								   [(ngModel)]="employee.firstName">
+							<div class="error"
+								*ngIf="form.controls.firstName.errors && form.controls.firstName.touched">
+			                    <span *ngIf="form.controls.firstName.errors.required">
+			                        {{ msg?.REQUIRED }}
+			                    </span>
+			                </div>
 						</div>
-						<div class="input-field col s6">
+						<div class="col-md-6 form-group">
+							<!-- Last Name -->
+							<label for="lastName">Last Name</label>
 							<input type="text"
 								   id="lastName"
-								   name="lastName"
-								   [(ngModel)]= "employeeData.last_name	"
-								   class="validate"
-								   required
-								   #lastName= "ngModel"
-								   pattern="[a-zA-Z ]*">
-							<label for="lastName"
-								   data-error="Enter a valid name" 
-								   [ngClass]="{active:isactive}" 
-								   >
-								Last Name
-							</label>
+								   class="form-control" 
+								   formControlName="lastName"
+								   [(ngModel)]= "employee.lastName">
+							<div class="error"
+								*ngIf="form.controls.lastName.errors && form.controls.lastName.touched">
+			                    <span *ngIf="form.controls.lastName.errors.required">
+			                        {{ msg?.REQUIRED }}
+			                    </span>
+			                </div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="input-field col s6">
+						<div class="col-md-12 form-group">
+							<!-- Employee Code -->
+							<label for="empCode">Employee Code</label>
 							<input type="text"
-								   id="emp_code"
-								   name="emp_code"
-								   [(ngModel)]= "employeeData.emp_code"
-								   class="validate"
-								   required
-								   #emp_code= "ngModel"
-							>
-							<label for="emp_code"
-								   data-error="Employee code not valid"
-								   [ngClass]="{active:isactive}" 
-								   >Employee Code
-							</label>
+								   id="empCode"
+								   class="form-control" 
+								   formControlName="code"
+								   [(ngModel)]= "employee.code">
+							<div class="error"
+								*ngIf="form.controls.code.errors && form.controls.code.touched">
+			                    <span *ngIf="form.controls.code.errors.required">
+			                        {{ msg?.REQUIRED }}
+			                    </span>
+			                </div>
 						</div>
-						<div class="input-field col s6">
+					</div>
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<!-- Designation -->
+							<label for="designation">Designation</label>
 							<input type="text"
 								   id="designation"
-								   name="designation"
-								   [(ngModel)]= "employeeData.designation"
-								   class="validate"
-								   required
-								   pattern="[a-zA-Z ]*">
-							<label for="designation"
-								   data-error="Only characters"
-								   [ngClass]="{active:isactive}" 
-								   >Designation
-							</label>
+								   class="form-control" 
+								   formControlName="designation"
+								   [(ngModel)]= "employee.designation">
+							<div class="error"
+								*ngIf="form.controls.designation.errors && form.controls.designation.touched">
+			                    <span *ngIf="form.controls.designation.errors.required">
+			                        {{ msg?.REQUIRED }}
+			                    </span>
+			                </div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="input-field col s12">
+						<div class="col-md-12 form-group">
+							<!-- Email -->
+							<label for="email">Email Address</label>
 							<input type="email"
-								   name="email"
 								   id="email"
-								   [(ngModel)]= "employeeData.email"
-								   class="validate"
-								   required
-								   #email= "ngModel"
-								   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
-							<label for="email"
-								   data-error="Enter a Valid Email"
-								   [ngClass]="{active:isactive}" 
-								   >
-								Email Address
-							</label>
+								   class="form-control" 
+								   formControlName="email"
+								   [(ngModel)]= "employee.email">
+							<div class="error" *ngIf="form.controls.email.errors && form.controls.email.touched">
+			                    <span *ngIf="form.controls.email.errors.required">
+			                        {{ msg?.REQUIRED }}
+			                    </span>
+			                    <span *ngIf="!form.controls.email.errors.required && form.controls.email.errors.pattern">
+                                        {{ msg?.INVALID }}
+                                </span>
+			                </div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col s12">
-							<div class="chips chips-autocomplete " (keyup.enter)= "showTagValues()"></div>
-						</div>
+						<div class="col-md-12 form-group">
+							<!-- Incharges -->
+							<label>Incharges</label>
+							<select class="form-control" 
+								formControlName="incharges"
+								multiple
+								[(ngModel)]="employee.incharges">
+								<option *ngFor="let incharge of incharges"  value="{{ incharge?.id }}">
+									{{incharge?.first_name + ' ' + incharge?.last_name }}</option>
+							</select>
+							<div class="error"
+								*ngIf="form.controls.role.errors && form.controls.role.touched">
+			                    <span *ngIf="form.controls.role.errors.required">
+			                        {{ msg?.REQUIRED }}
+			                    </span>
+			                </div>
+			            </div>
 					</div>
 					<div class="row">
-						<div class="input-field col s12">
+						<div class="col-md-12 form-group">
+							<!-- Mobile -->
+							<label for="mobile">Phone Number</label>
 							<input type="text"
 								   id= "mobile"
-								   maxlength="10"
-								   name="mobile" 
-								   [(ngModel)]= "employeeData.mobile" 
-								   class="validate" 
-								   required 
-								   #mobile="ngModel"
-								   pattern="^[2-9]{2}[0-9]{8}$">
-							<label for="mobile"
-								   data-error="mobile number not valid"
-								   [ngClass]="{active:isactive}" 
-								   >
-								Phone Number
-							</label>
+								   maxlength="10" 
+								   class="form-control" 
+								   formControlName="mobile"
+								   [(ngModel)]= "employee.mobile" >
+							<div class="error"
+								*ngIf="form.controls.mobile.errors && form.controls.mobile.touched">
+			                    <span *ngIf="form.controls.mobile.errors.required">
+			                        {{ msg?.REQUIRED }}
+			                    </span>
+			                    <span *ngIf="!form.controls.mobile.errors.required && (form.controls.mobile.errors.minlength || form.controls.mobile.errors.pattern)">
+                                        {{ msg?.INVALID }}
+                                </span>
+			                </div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col s12">
-							<label for="Gender">Gender</label>
-							<p>
+						<div class="col-md-12 form-group">
+							<!-- Gender -->
+							<label>Gender</label>
+							<p style="padding-left: 20px;">
+								<!-- Male -->
 								<input type="radio" 
-									   class="with-gap" 
-									   [(ngModel)]= "employeeData.gender"
-									   name="gender"
-									   value="male"
-									   id="male"
-									   checked>
+									class="with-gap" 
+									[(ngModel)]= "employee.gender"
+									name="gender"
+									formControlName="gender"
+									value="male"
+									id="male"
+									checked>
 								<label for="male">Male</label>
+								<br>
+								<!-- Female -->
 								<input type="radio" 
-									   class="with-gap" 
-								       [(ngModel)]= "employeeData.gender"
-								       name="gender" 
-								       value="female"
-								       id="female" >
+									formControlName="gender"
+									class="with-gap" 
+								    [(ngModel)]= "employee.gender"
+								     name="gender" 
+								    value="female"
+								    id="female">
 								<label for="female">Female</label>
 							</p>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col s12">
+						<div class="col-md-12 form-group">
+							<!-- Date Of Birth -->
 							<label>Date Of Birth</label>
-							<input type="date" 
+							<input type="text"
 								   id="dob" 
-								   name="dob" 
-								   [(ngModel)]= "employeeData.dob" 
-								   class=" validate"
-								   required 
-								   #dob="ngModel">
-						</div>	
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<textarea id="address" 
-									  name="address" 
-									  [(ngModel)]= "employeeData.address" 
-									  rows="3" 
-									  resize= "none" 
-									  class="materialize-textarea"
-									  required 
-									  #address="ngModel">
-							</textarea>
-							<label for="address"
-								   data-error="wrong"
-								   [ngClass]="{active:isactive}" 
-								   >
-								Address
-							</label>
+								   class="form-control" 
+								   name="dob"
+								   placeholder="YYYY-MM-DD"
+								   formControlName="dob"
+							        ngbDatepicker
+							        [dayTemplate]="customDay"
+							        #dob="ngbDatepicker"
+							        (focus)="dob.open()"
+								   [(ngModel)]="employee.dob">
+	                            <template #customDay
+                                        let-date="date"
+                                        let-currentMonth="currentMonth"
+                                        let-selected="selected"
+                                        let-disabled="disabled">
+                                    <span class="custom-day"
+                                            [class.weekend]="isWeekend(date)"
+                                            [class.bg-primary]="selected"
+                                            [class.text-muted]="disabled">
+                                            {{ date.day }}
+                                    </span>
+                                </template>
+							<div class="error"
+								*ngIf="form.controls.dob.errors && form.controls.dob.touched">
+			                    <span *ngIf="form.controls.dob.errors.required">
+			                        {{ msg?.REQUIRED }}
+			                    </span>
+			                </div>
 						</div>
 					</div>
 					<div class="row">
-						<div class=" col s12">
-							<label>Active ?</label>
-							<div class="switch">
-							    <label>
-							        <input type="checkbox" 
-							      		   name="is_active"
-									       [(ngModel)]= "employeeData.is_active">
-							        <span class="lever"></span>
-							    </label>
+						<div class="col-md-12 form-group">
+							<!-- Address -->
+							<label for="address">Address</label>
+							<textarea id="address" 
+									  name="address" 
+									  [(ngModel)]= "employee.address" 
+									  rows="3" 
+									  formControlName="address"
+									  resize= "none" 
+									  class="form-control">
+							</textarea>
+							<div class="error"
+								*ngIf="form.controls.address.errors && form.controls.address.touched">
+			                    <span *ngIf="form.controls.address.errors.required">
+			                        {{ msg?.REQUIRED }}
+			                    </span>
+			                </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<!-- Role -->
+							<label>Role</label>
+							<select id='roleModel'
+								class="form-control" 
+								formControlName="role"
+								[(ngModel)]="employee.role">
+								<option value="" disabled selected>Select Role</option>
+								<option value="1">Admin</option>
+								<option value="0">User</option>
+							</select>
+							<div class="error"
+								*ngIf="form.controls.role.errors && form.controls.role.touched">
+			                    <span *ngIf="form.controls.role.errors.required">
+			                        {{ msg?.REQUIRED }}
+			                    </span>
+			                </div>
+						</div>
+					</div>
+					<div class="row">
+						<!-- Status -->
+						<div class="col-md-12 form-group">
+							<div class="row">
+								<div class="col-md-1">
+									<label>Active</label>
+								</div>
+								<div class="col-md-11 pull-left">
+									<label class="toggle">
+									  	<input type="checkbox"
+									  		 formControlName="isActive"
+									  		 [(ngModel)]= "employee.isActive">
+									  	<div class="slider round"></div>
+									</label>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="action-buttons">
-					<button type="button" 
-							class="btn btn-md btn-info pull-right cancel-btn" (click)= "navigateToDasbord()">
-						Cancel
-					</button>
-					<button type="submit" 
-							class="btn btn-md btn-info pull-right">
-						{{buttonText}}
-					</button>
+				<div>
+					<div class="col-md-12 form-group">
+						<button type="submit" 
+							class="btn btn-md btn-success pull-right"
+							[disabled]="!form.valid">
+							Next
+						</button>
+						<button type="button" 
+								class="btn btn-md btn-primary pull-left"
+								(click)= "goToDasbord()">
+							Cancel
+						</button>
+					</div>
 				</div>					
 			</form> 
 		</div>
 	</div>
 </div>
-{{employeeData.dob}}
-{{employeeData.email}}
+<!-- End of Main container -->
+

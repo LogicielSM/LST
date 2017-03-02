@@ -1,0 +1,103 @@
+<!-- Run loader before get data -->
+<lst-loader [isRunning]="isRequesting"></lst-loader>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Leave's Details</h1>
+    </div>
+</div>
+
+<div class="container" *ngIf="leave">
+    <div class="detail-Heading">
+        <div>
+            <h5>
+                <b>From : </b> <span class="text-info"> {{ user?.email }}</span></h5>
+        </div>
+        <div>
+            <h6>
+                <span> <b>Date : </b> {{ leave?.created_at | date:'mediumDate' }}</span></h6>
+                <h6><b>Time : </b> {{ leave?.created_at | date:'shortTime' }}</h6>
+        </div>
+        <div class="leave-details">
+            <h6 *ngIf="leave.type == 'One Day'">
+                <b>On Leave : </b>{{ leave?.date_from | date:'dd-MMM-yyyy'}}
+            </h6>
+            <h6 *ngIf="leave.type == 'Multi Days'">
+                <b>From : </b>{{leave?.date_from | date:'dd-MMM-yyyy'}},<b> To : </b>{{leave?.date_to | date:'dd-MMM-yyyy'}}
+            </h6>
+            <h6 *ngIf="leave.type == 'Short Leave'">
+                <b>On Leave : </b>{{leave?.date_from | date:'dd-MMM-yyyy'}}
+            </h6>
+            <h6>
+                <b>Type : </b>
+                {{ leave?.type }}
+            </h6>
+            <h6>
+                <b>Subject : </b>
+                {{ leave?.subject | capitalize }}
+            </h6>
+            <h6>
+                <b>Reason : </b>
+                {{ leave?.note }}
+            </h6>
+        </div>
+    </div>
+    
+    <div class="row form-group">
+        <div class="panel panel-default">
+            <div class="leave-detail-heading">
+                <h4>
+                    <a class="chat-reload">
+                        <i class="fa fa-refresh pointer"
+                        aria-hidden="true"
+                        title="Refresh Messages"
+                        (click)="getChat()"></i>
+                    </a>
+                    Conversstion
+                    <button class="pull-right btn btn-sm">
+                        {{ leave && leave.status == 1 ? leaveStatusTypes[0] : leaveStatusTypes[1] }}
+                    </button>
+                </h4>
+            </div>
+
+            <div class="panel-body body-panel">
+                <ul class="chat">
+                    <li [ngClass]="{ pright: chat[i].user_id  == currentUser.id }" class="left clearfix" *ngFor = "let c of chat; let i= index ">
+                        <span [ngClass]="{ pright: chat[i].user_id  == currentUser.id }" class="chat-img">
+                            <div class="user approve" [ngClass]="{ pright: chat[i].user_id  == currentUser.id }">
+                                {{ c.user_id != currentUser.id ? 'O' : 'Me'}}
+                            </div>
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <small class=" text-muted">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                    {{c.created_at}}
+                                </small>
+                            </div>
+                            <p>{{ c.notes }}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div> 
+            <div class="panel-footer clearfix col-md-12">
+                <form class="form row">
+                    <div class="col-md-8 col-sm-8">
+                        <input type="text"
+                           class="form-control"
+                           name="notes"
+                           placeholder="Enter your Message"
+                           [(ngModel)]="message">
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <button  [disabled]="!message"
+                            class="btn btn-md btn-primary"
+                            (click)="sendMessage()">
+                            Send
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

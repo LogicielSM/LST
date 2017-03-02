@@ -1,8 +1,12 @@
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `angular-cli.json`.
+/* It runs by default, just run 'ng serve' */
 
 export const environment = {
-  production: false
+	production: false
 };
+
+/**
+ * For Local
+ */
+/* NOTE: Don't use 'https://'...just use 'http://' */
+export const API_URL = 'http://lst.dev.clientreviews.info/api/v1/';
+export const APP_URL = 'http://localhost:4200/';

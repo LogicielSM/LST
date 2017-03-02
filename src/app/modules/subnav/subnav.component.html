@@ -1,0 +1,13 @@
+ <a  data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+ <ul  class="right hide-on-med-and-down">
+ 	<li *ngIf="!isloggedin"><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+ 	<li *ngIf="isloggedin">{{currentUserName | uppercase}}</li>
+ 	<li *ngIf="isloggedin"><a (click)= "logOut()"> <span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+ </ul>
+
+ <ul  class="side-nav" id="mobile-demo">
+ 	<li *ngIf="!isloggedin"><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+ 	<li *ngIf="isloggedin">{{currentUserName | uppercase}}</li>
+ 	<li *ngIf="isloggedin"><a (click)= "logOut()"> <span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+ </ul>
+ 

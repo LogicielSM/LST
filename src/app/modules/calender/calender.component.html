@@ -1,0 +1,28 @@
+<lst-loader [isRunning]="isRequesting"></lst-loader>
+
+<div id="page-wrapper">
+    <div class="container row calendar-wrap">
+        <!-- call calender component -->
+        <angular2-fullcalendar [options]="calendarOptions" *ngIf="showCalender"></angular2-fullcalendar>
+
+    <!-- Modal Structure -->
+    <div class="modal fade" id="myModal" role="dialog" >
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">&times;</button>
+                  <h4 class="modal-title">Leave Details</h4>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-titles center-align">
+                        Subject {{ leave?.title }}
+                    </h4>
+                    {{ leave?.start }}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

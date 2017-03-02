@@ -1,0 +1,22 @@
+.container{
+	width: 100%;
+	margin: auto;
+}
+
+table{
+    border: 1px solid #ccc;
+}
+table tr{
+    border-bottom: 1px solid #ccc;
+}
+.name{
+    width: 25%;
+    padding-left: 15px;
+}
+.reason{
+    width: 75%; 
+    text-overflow: ellipsis; 
+}
+.reason-detail{
+    color: #999;
+}

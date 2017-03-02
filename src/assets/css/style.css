@@ -1,0 +1,166 @@
+.pointer {
+	cursor: pointer !important;
+}
+.pright{
+  text-align: right;
+}
+.error {
+	color: #b40101;
+}
+.calendar-wrap {
+	width: 75%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+/* Apply leave module */
+.leave-form {
+	margin-top: 50px;
+}
+textarea {
+	resize: none;
+}
+.apply-leave-wrap {
+	width: 75%;
+    padding-bottom: 50px;
+    margin-left: 0;
+}
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.toggle input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: 0px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+/* Profile */
+.main {
+	width: 90%;
+	margin: auto;
+}
+.table-user-information > tbody > tr {
+   border-bottom: 1px solid rgb(221, 221, 221);
+}
+.modal{
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #fafafa;
+    padding: 0;
+    max-height: 270px ;
+    max-width:365px;
+    margin:auto;
+    overflow-y: auto;
+    border-radius: 2px;
+}
+
+.page-header .btn {
+    margin-left: 10px;
+}
+
+.table-user-information > tbody > tr {
+    border-left: 1px solid rgb(221, 221, 221);
+}
+.table-user-information > tbody > tr > td {
+    border-right: 1px solid rgb(221, 221, 221);
+}
+.table-user-information > tbody > tr > td:first-child {
+    font-weight: bold;
+    width: 30%;
+}
+
+.spinner-wrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    background: #e3e3e3;
+    opacity:0.5;
+}
+.spinner {
+    position: fixed;
+    /*top: 0;*/
+    width: 50px;
+    height: 50px;
+    left: 0;
+    right: 0;
+    bottom: 48%;
+    margin: 0 auto;
+    font-size: 40px;
+    color: #337ab7;
+}
+.form-group ngb-datepicker-navigation table {
+  position: relative;
+  width: 100%;
+}
+.form-group  ngb-datepicker-month-view table {
+      width: 250px;
+    text-align: center;
+}
+.form-group ngb-datepicker {
+  min-width: 250px;
+}
+.text-sm-right .next {
+  float: right;
+}
+
+.form-group .custom-select{
+  font-size: 13px !important;
+}
+.form-group ngb-datepicker .day {
+  border: 1px solid #e3e3e3;
+}
+
+.modal{
+  background-color: rgba(250,250,250,0) !important;
+}
