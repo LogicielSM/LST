@@ -33,8 +33,8 @@
         "../node_modules/metismenu/dist/metisMenu.min.js",
         "../node_modules/moment/min/moment.min.js",
         "../node_modules/fullcalendar/dist/fullcalendar.min.js",
-        "../node_modules/materialize-clockpicker/dist/js/materialize.clockpicker.js",
         "../src/assets/js/theme.js"
+
       ],
       "environments": {
         "source": "environments/environment.ts",
